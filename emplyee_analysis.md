@@ -168,4 +168,62 @@ GROUP BY
 | Public Relations Representative | 10000          |
 | Purchasing Clerk                | 2780           |
 
+An employee years of service award program not only motivates employees to remain loyal to their company, but also reflects positively on the company for 
+retaining them. An employee might receive his or her first service award after 25 years—sometimes even 20 years.
+```sql
+SELECT * FROM public.employees1;
+-- Add a new column named Years_of_Service to the employees1 table
+ALTER TABLE public.employees1
+ADD COLUMN Years_of_Service INT;
 
+-- Update the Years_of_Service column with the calculated years of service
+UPDATE public.employees1
+SET Years_of_Service = EXTRACT('YEAR' FROM CURRENT_DATE) - EXTRACT('YEAR' FROM hire_date);
+
+-- Retrieve the first name, last name, and years of service for employees with 20 or more years of service
+SELECT first_name, last_name, Years_of_Service
+FROM public.employees1
+WHERE Years_of_Service >= 20;
+```
+| first_name   | last_name   | years_of_service |
+|--------------|-------------|------------------|
+| Steven       | King        | 37               |
+| Neena        | Kochhar     | 35               |
+| Lex          | De Haan     | 31               |
+| Alexander    | Hunold      | 34               |
+| Bruce        | Ernst       | 33               |
+| David        | Austin      | 27               |
+| Valli        | Pataballa   | 26               |
+| Diana        | Lorentz     | 25               |
+| Nancy        | Greenberg   | 30               |
+| Daniel       | Faviet      | 30               |
+| John         | Chen        | 27               |
+| Ismael       | Sciarra     | 27               |
+| Jose Manuel  | Urman       | 26               |
+| Luis         | Popp        | 25               |
+| Den          | Raphaely    | 30               |
+| Alexander    | Khoo        | 29               |
+| Shelli       | Baida       | 27               |
+| Sigal        | Tobias      | 27               |
+| Guy          | Himuro      | 26               |
+| Karen        | Colmenares  | 25               |
+| Matthew      | Weiss       | 28               |
+| Adam         | Fripp       | 27               |
+| Payam        | Kaufling    | 29               |
+| Shanta       | Vollman     | 27               |
+| Irene        | Mikkilineni | 26               |
+| John         | Russell     | 28               |
+| Karen        | Partners    | 27               |
+| Jonathon     | Taylor      | 26               |
+| Jack         | Livingston  | 26               |
+| Kimberely    | Grant       | 25               |
+| Charles      | Johnson     | 24               |
+| Sarah        | Bell        | 28               |
+| Britney      | Everett     | 27               |
+| Jennifer     | Whalen      | 37               |
+| Michael      | Hartstein   | 28               |
+| Pat          | Fay         | 27               |
+| Susan        | Mavris      | 30               |
+| Hermann      | Baer        | 30               |
+| Shelley      | Higgins     | 30               |
+| William      | Gietz       | 30               |
